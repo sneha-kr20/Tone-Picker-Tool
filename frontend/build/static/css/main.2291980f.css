@@ -1,0 +1,2 @@
+@tailwind base;@tailwind components;@tailwind utilities;.btn,body,textarea{@apply px-4 py-2 border rounded bg-gray-100 hover:bg-gray-200 disabled:opacity-50}
+/*# sourceMappingURL=main.2291980f.css.map*/
