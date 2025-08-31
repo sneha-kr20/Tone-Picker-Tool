@@ -9,8 +9,23 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+// ✅ Allow frontend from Render (update this if needed)
+app.use(cors({
+  origin: ["http://localhost:3000", "https://tone-picker-tool-frontend.onrender.com"],
+  credentials: true
+}));
+
 app.use(express.json());
+
+// ✅ Root route to confirm backend is running
+app.get("/", (req, res) => {
+  res.send("Tone Picker API is running");
+});
+
+// ✅ Health check route
+app.get("/status", (req, res) => {
+  res.json({ status: "ok", timestamp: Date.now() });
+});
 
 const toneInstructions = {
   formal: "Rewrite the text to sound formal and professional.",
@@ -21,6 +36,7 @@ const toneInstructions = {
   empathetic: "Make the text caring and emotionally supportive.",
 };
 
+// ✅ Main rewrite endpoint
 app.post("/api/rewrite", async (req, res) => {
   const { text, tone } = req.body;
 
@@ -56,6 +72,7 @@ app.post("/api/rewrite", async (req, res) => {
   }
 });
 
+// ✅ Start the server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });

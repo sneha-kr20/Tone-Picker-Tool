@@ -3,18 +3,19 @@ import UndoRedoControls from "./UndoRedoControls";
 import useHistory from "./hooks/useHistory"; // ✅ import custom hook
 
 function App() {
-  // instead of simple useState
   const textHistory = useHistory("");   // for input text
   const resultHistory = useHistory(""); // for backend results
   const [tone, setTone] = useState("formal");
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
+
   const handleRewrite = async () => {
     try {
-     const res = await fetch("http://localhost:5000/api/rewrite", {
-     method: "POST",
-     headers: { "Content-Type": "application/json" },
-     body: JSON.stringify({ text: textHistory.current, tone }),
-    });
+      const res = await fetch(`${API_BASE_URL}/api/rewrite`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: textHistory.current, tone }),
+      });
 
       const data = await res.json();
       resultHistory.update(data.output || JSON.stringify(data)); // ✅ track results
@@ -49,7 +50,6 @@ function App() {
             <option value="angry">Angry</option>
             <option value="excited">Excited</option>
             <option value="empathetic">Empathetic</option>
-
           </select>
 
           <button
