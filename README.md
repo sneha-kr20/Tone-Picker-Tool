@@ -6,7 +6,7 @@ The app transforms the input to match the selected tone using AI-powered backend
 ---
 
 ## 🚀 Live Demo
-👉 [Try it here](#) *(Add your deployed URL once live)*
+👉 [Try it here](https://tone-picker-tool-frontend.onrender.com)
 
 ---
 
@@ -32,41 +32,30 @@ The app transforms the input to match the selected tone using AI-powered backend
 ```bash
 git clone https://github.com/sneha-kr20/Tone-Picker-Tool.git
 cd Tone-Picker-Tool
+
 2. Backend Setup (Express.js)
 bash
-Copy code
+
 cd server
 npm install
 Create a .env file inside the server/ folder and add:
-
 ini
-Copy code
 MISTRAL_API_KEY=your_api_key_here
-Start the backend:
 
-bash
-Copy code
+Start the backend:
 npm start
 Runs on: http://localhost:5000
 
 3. Frontend Setup (React + TypeScript)
-bash
-Copy code
 cd client
 npm install
 npm run dev
 Runs on: http://localhost:5173
-
 4. Running Both Frontend and Backend Together
 If you want to run both servers with a single command, install concurrently in the root directory:
-
-bash
-Copy code
 npm install -g concurrently
 Then, from the project root, run:
 
-bash
-Copy code
 concurrently "npm start --prefix server" "npm run dev --prefix client"
 🔍 Useful Commands Reference
 Backend
