@@ -8,8 +8,8 @@ function App() {
   const [tone, setTone] = useState("formal");
 
   const API_BASE_URL = process.env.REACT_APP_API_URL;
+
   const handleRewrite = async () => {
-      console.log("🔍 API_BASE_URL:", API_BASE_URL); 
     try {
       const res = await fetch(`${API_BASE_URL}/api/rewrite`, {
         method: "POST",
@@ -17,27 +17,17 @@ function App() {
         body: JSON.stringify({ text: textHistory.current, tone }),
       });
 
-      console.log("📡 Response status:", res.status); 
       const data = await res.json();
-      console.log("📦 Response data:", data);
       resultHistory.update(data.output || JSON.stringify(data)); // ✅ track results
     } catch (err) {
-      console.error(err);
       resultHistory.update("Error: Could not connect to backend");
     }
   };
 
   return (
-    
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
       <div className="w-full max-w-lg p-6 bg-white rounded-2xl shadow-lg">
         <h1 className="text-2xl font-bold mb-4 text-center">Tone Picker</h1>
-
-         {/* ✅ Debug line to confirm API URL */}
-      <div className="mb-2 text-sm text-gray-500">Debug: {API_BASE_URL}</div>
-
-      {/* Text input with history */}
-
 
         {/* Text input with history */}
         <textarea
