@@ -7,8 +7,7 @@ function App() {
   const resultHistory = useHistory(""); // for backend results
   const [tone, setTone] = useState("formal");
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL;
-
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
   const handleRewrite = async () => {
     try {
       const res = await fetch(`${API_BASE_URL}/api/rewrite`, {
